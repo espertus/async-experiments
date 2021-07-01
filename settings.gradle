@@ -1,0 +1,2 @@
+rootProject.name = "AsyncExperiments"
+include ':app'
