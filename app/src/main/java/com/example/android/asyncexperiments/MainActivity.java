@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         btnSlowForeground.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                countdownH();
+                countdownA();
             }
         });
     }
