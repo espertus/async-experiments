@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         btnSlowForeground.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                countdownA();
+                countdownI();
             }
         });
     }
@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         tvStatus.setText("Counting down...");
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         executorService.execute(new Runnable() {
+            @Override
             public void run() {
                 try {
                     for (int i = 5; i >= 0; i--) {
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 /*    void countdownG() {
         tvStatus.setText("Counting down...");
         Handler handler = new Handler(Looper.getMainLooper());
-        int count = 5;
+        final int count = 5;
         Runnable runnable = new Runnable() {
             public void run() {
                 if (count >= 0) {
@@ -128,12 +129,30 @@ public class MainActivity extends AppCompatActivity {
     void countdownH() {
         tvStatus.setText("Counting down...");
         Handler handler = new Handler(Looper.getMainLooper());
-        IntHolder ih = new IntHolder(5);
+        final IntHolder ih = new IntHolder(5);
 
         Runnable runnable = new Runnable() {
             public void run() {
                 if (ih.i >= 0) {
                     tvStatus.setText(String.valueOf(ih.i--));
+                    handler.postDelayed(this, 1000);
+                }
+            }
+        };
+        handler.postDelayed(runnable, 1000); // run in 1 second
+    }
+
+    private int count;
+
+    void countdownI() {
+        tvStatus.setText("Counting down...");
+        Handler handler = new Handler(Looper.getMainLooper());
+        count = 5;
+
+        Runnable runnable = new Runnable() {
+            public void run() {
+                if (count >= 0) {
+                    tvStatus.setText(String.valueOf(count--));
                     handler.postDelayed(this, 1000);
                 }
             }
